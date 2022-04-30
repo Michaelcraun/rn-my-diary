@@ -20,6 +20,10 @@ export class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  buttonAccent: {
+    borderTopWidth: 1,
+    borderTopColor: theme.secondary_color,
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",

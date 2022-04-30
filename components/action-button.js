@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { theme } from "../constants/theme";
 
-const ActionButton = ({ title, onPress }) => {
+const ActionButton = ({ title, buttonStyle, onPress }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, buttonStyle]}>
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={styles.text}>{title ? title : "TEST"}</Text>
       </TouchableOpacity>
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "center",
-    fontWeight: "400",
+    fontWeight: "100",
   },
 });
 
