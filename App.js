@@ -4,6 +4,7 @@ import { Home } from "./screens/home";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { theme } from "./constants/theme";
+import { AddDiaryModal } from "./screens/add-diary";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -23,6 +24,20 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: "300",
             },
+          }}
+        />
+        <Stack.Screen
+          name="addDiary"
+          component={AddDiaryModal}
+          options={{
+            title: "Add Diary",
+            headerStyle: {
+              backgroundColor: theme.primary_color,
+            },
+            headerTitleStyle: {
+              fontWeight: "300",
+            },
+            presentation: "modal",
           }}
         />
       </Stack.Navigator>

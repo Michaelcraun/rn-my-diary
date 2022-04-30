@@ -1,3 +1,4 @@
+import { StackActions } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import ActionButton from "../components/action-button";
@@ -6,14 +7,18 @@ import { theme } from "../constants/theme";
 
 export class Home extends React.Component {
   onAddPressed = () => {
-    console.log("onAddPressed");
+    this.props.navigation.navigate("addDiary");
   };
 
   render() {
     return (
       <View style={styles.container}>
         <DiaryList />
-        <ActionButton title="Add New Diary" onPress={this.onAddPressed} />
+        <ActionButton
+          title="Add New Diary"
+          buttonStyle={styles.buttonAccent}
+          onPress={this.onAddPressed}
+        />
       </View>
     );
   }

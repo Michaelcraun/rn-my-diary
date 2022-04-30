@@ -1,16 +1,68 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from "react";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import DiaryRow from "./diary-row";
 
-const DiaryList = ({ diaries }) => {
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
+const DiaryList = () => {
+  const [refreshing, setRefreshing] = useState(false);
+  const [diaries, setDiaries] = useState([]);
+
+  const rows = () => {
+    let rows = [];
+    for (let index = 0; index <= diaries.length; index++) {
+      let diary = diaries[index];
+      if (diary != undefined) {
+        if (diary.title != undefined && diary.body != undefined) {
+          rows.push(
+            <DiaryRow
+              title={diary.title}
+              subtitle={new Date(diary.date).toDateString()}
+              key={diary.uuid}
+            />
+          );
+        }
+      }
+    }
+    return rows;
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+
+    let result = await AsyncStorage.getItem("diaries");
+    let diaries = JSON.parse(result);
+    if (diaries != undefined) {
+      setDiaries(diaries);
+    }
+
+    setRefreshing(false);
+  };
+
   return (
     <View style={styles.container}>
-      {diaries ? (
-        <ScrollView></ScrollView>
-      ) : (
-        <View style={styles.nullTextContainer}>
-          <Text style={styles.nullText}>No Diaries Yet</Text>
-        </View>
-      )}
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {diaries.length == 0 ? (
+          <View style={styles.nullTextContainer}>
+            <Text style={styles.nullText} />
+          </View>
+        ) : (
+          rows()
+        )}
+      </ScrollView>
     </View>
   );
 };
