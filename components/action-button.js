@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { theme } from "../constants/theme";
 
 const ActionButton = ({ title, onPress }) => {
   return (
@@ -14,7 +15,7 @@ const ActionButton = ({ title, onPress }) => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: "stretch",
-    backgroundColor: "#e0b5e8",
+    backgroundColor: theme.primary_color,
     justifyContent: "center",
   },
   button: {
@@ -23,8 +24,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
+    fontSize: 18,
     textAlign: "center",
-    fontWeight: "bold",
+    fontWeight: "400",
   },
 });
 

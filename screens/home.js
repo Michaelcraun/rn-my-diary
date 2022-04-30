@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import ActionButton from "../components/action-button";
 import DiaryList from "../components/diary-list";
+import { theme } from "../constants/theme";
 
 export class Home extends React.Component {
   onAddPressed = () => {
@@ -25,6 +26,6 @@ const styles = StyleSheet.create({
   },
   safeContainer: {
     flex: 1,
-    backgroundColor: "#e0b5e8",
+    backgroundColor: theme.primary_color,
   },
 });

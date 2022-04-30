@@ -3,15 +3,28 @@ import { useState } from "react";
 import { Home } from "./screens/home";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { theme } from "./constants/theme";
+const Stack = createStackNavigator();
 
 export default function App() {
-  const Stack = createStackNavigator();
   const [diaries, setDiaries] = useState();
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Diary" component={Home} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: "Diary",
+            headerStyle: {
+              backgroundColor: theme.primary_color,
+            },
+            headerTitleStyle: {
+              fontWeight: "300",
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -20,6 +33,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e0b5e8",
+    backgroundColor: theme.primary_color,
   },
 });
