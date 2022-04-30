@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { Storage } from "../data/storage";
 import DiaryRow from "./diary-row";
 
 const wait = (timeout) => {
@@ -39,8 +40,7 @@ const DiaryList = () => {
   const onRefresh = async () => {
     setRefreshing(true);
 
-    let result = await AsyncStorage.getItem("diaries");
-    let diaries = JSON.parse(result);
+    let diaries = await Storage.getItem("diaries");
     if (diaries != undefined) {
       setDiaries(diaries);
     }
