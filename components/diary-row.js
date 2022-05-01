@@ -2,12 +2,14 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
-const DiaryRow = ({ title, subtitle, style, onPress }) => {
+const DiaryRow = ({ diary, style, onPress }) => {
   return (
     <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.title}>{diary.title}</Text>
+        <Text style={styles.subtitle}>
+          {new Date(diary.date).toDateString()}
+        </Text>
       </View>
       <Entypo name="chevron-small-right" size={24} color="gray" />
     </TouchableOpacity>

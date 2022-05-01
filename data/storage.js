@@ -7,11 +7,8 @@ const setItem = async (key, item) => {
 };
 
 const getItem = async (key) => {
-  console.log("1");
   const rawData = await AsyncStorage.getItem(key);
-  console.log("2");
   const item = JSON.parse(rawData);
-  console.log("3");
   return item;
 };
 
